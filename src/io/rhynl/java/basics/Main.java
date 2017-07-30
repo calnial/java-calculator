@@ -46,30 +46,52 @@ public class Main {
      */
     public static void rutinaParaEnteros() {
         // declaraciones
-        int num1, num2, resultado = 0;
+        int resultado = 0;
         
-        System.out.print("Ingrese primer numero: ");
-        num1 = teclado.nextInt();
-        System.out.print("Ingrese segundo numero: ");
-        num2 = teclado.nextInt();
+        System.out.print("Ingrese los numeros con los que desea operar, separados por coma (ejemplo: 1,2,3,4): ");
+        
+        String cadena = teclado.next();
+        
+        int[] numeros = convertirNumerosEnteros(cadena);
         
         char operacion = preguntarPorOperacion();
         
         switch (operacion) {
             case 's':
-                resultado = num1 + num2;
+                int suma = 0;
+                for (int numero : numeros) {
+                    suma += numero;
+                }
+                resultado = suma;
                 break;
             case 'r':
-                resultado = num1 - num2;
+                int resta = 0;
+                for (int numero : numeros) {
+                    resta -= numero;
+                }
+                resultado = resta;
                 break;
             case 'm':
-                resultado = num1 * num2;
+                int multi = 1;
+                for (int numero : numeros) {
+                    multi *= numero;
+                }
+                resultado = multi;
                 break;
             case 'd':
-                resultado = num1 / num2;
+                int div = numeros[0];
+                for (int i = 1; i < numeros.length; i++) {
+                    if (numeros[i] != 0) {
+                        div /= numeros[i];
+                    } else {
+                        resultado = 0;
+                        break;
+                    }
+                }
+                resultado = div;
                 break;
             case 'o':
-                resultado = num1 % num2;
+                
                 break;
             default:
                 break;
@@ -83,30 +105,35 @@ public class Main {
      */
     public static void rutinaParaDecimales() {
         //decalraciones
-        double num1, num2, resultado = 0.0d;
+        double resultado = 0.0d;
         
-        System.out.print("Ingrese primer numero: ");
-        num1 = teclado.nextDouble();
-        System.out.print("Ingrese segundo numero: ");
-        num2 = teclado.nextDouble();
+        System.out.print("Ingrese los numeros con los que desea operar, separados por coma (ejemplo: 1,2,3,4): ");
+        
+        String cadena = teclado.next();
+        
+        double[] numeros = convertirNumerosDecimales(cadena);
         
         char operacion = preguntarPorOperacion();
         
         switch (operacion) {
             case 's':
-                resultado = num1 + num2;
+                int suma = 0;
+                for (double numero : numeros) {
+                    suma += numero;
+                }
+                resultado = suma;
                 break;
             case 'r':
-                resultado = num1 - num2;
+                
                 break;
             case 'm':
-                resultado = num1 * num2;
+                
                 break;
             case 'd':
-                resultado = num1 / num2;
+                
                 break;
             case 'o':
-                resultado = num1 % num2;
+                
                 break;
             default:
                 break;
@@ -150,5 +177,37 @@ public class Main {
                 return operacion;
             }
         }
+    }
+    
+    /**
+     * 
+     * @param cadena recibe una cadena de caracteres
+     * @return devuelve un arreglo de numeros enteros
+     */
+    static int[] convertirNumerosEnteros(String cadena) {
+        String[] arreglo = cadena.split(",");
+        int[] numeros = new int[arreglo.length];
+        
+        for (int i = 0; i < arreglo.length; i++) {
+            numeros[i] = Integer.parseInt(arreglo[i]);
+        }
+        
+        return numeros;        
+    }
+    
+    /**
+     * 
+     * @param cadena cadena de caracteres
+     * @return arreglo de numeros decimales
+     */
+    static double[] convertirNumerosDecimales(String cadena) {
+        String[] arreglo = cadena.split(",");
+        double[] numeros = new double[arreglo.length];
+        
+        for (int i = 0; i < arreglo.length; i++) {
+            numeros[i] = Double.parseDouble(arreglo[i]);
+        }
+        
+        return numeros;        
     }
 }
