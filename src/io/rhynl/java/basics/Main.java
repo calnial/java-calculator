@@ -65,9 +65,9 @@ public class Main {
                 resultado = suma;
                 break;
             case 'r':
-                int resta = 0;
-                for (int numero : numeros) {
-                    resta -= numero;
+                int resta = numeros[0];
+                for (int i = 1; i < numeros.length; i++) {
+                    resta -= numeros[i];
                 }
                 resultado = resta;
                 break;
@@ -84,14 +84,18 @@ public class Main {
                     if (numeros[i] != 0) {
                         div /= numeros[i];
                     } else {
-                        resultado = 0;
+                        div = 0;
                         break;
                     }
                 }
                 resultado = div;
                 break;
             case 'o':
-                
+                if (numeros.length != 2) {
+                    System.out.println("Para el modulo se requiere solo dos numeos");
+                    return;
+                }
+                resultado = numeros[0] / numeros[1];
                 break;
             default:
                 break;
@@ -107,7 +111,7 @@ public class Main {
         //decalraciones
         double resultado = 0.0d;
         
-        System.out.print("Ingrese los numeros con los que desea operar, separados por coma (ejemplo: 1,2,3,4): ");
+        System.out.print("Ingrese los numeros con los que desea operar, separados por coma (ejemplo: 1,2.3,3.2): ");
         
         String cadena = teclado.next();
         
@@ -117,29 +121,50 @@ public class Main {
         
         switch (operacion) {
             case 's':
-                int suma = 0;
+                double suma = 0;
                 for (double numero : numeros) {
                     suma += numero;
                 }
                 resultado = suma;
                 break;
             case 'r':
-                
+                double resta = numeros[0];
+                for (int i = 1; i < numeros.length; i++) {
+                    resta -= numeros[i];
+                }
+                resultado = resta;
                 break;
             case 'm':
-                
+                double multi = 1;
+                for (double numero : numeros) {
+                    multi *= numero;
+                }
+                resultado = multi;
                 break;
             case 'd':
-                
+                double div = numeros[0];
+                for (int i = 1; i < numeros.length; i++) {
+                    if (numeros[i] != 0) {
+                        div /= numeros[i];
+                    } else {
+                        div = 0;
+                        break;
+                    }
+                }
+                resultado = div;
                 break;
             case 'o':
-                
+                if (numeros.length != 2) {
+                    System.out.println("Para el modulo se requiere solo dos numeos");
+                    return;
+                }
+                resultado = numeros[0] / numeros[1];
                 break;
             default:
                 break;
         }
-        
-        System.out.println("Resultado: "+resultado);
+        // https://docs.oracle.com/javase/tutorial/java/data/numberformat.html
+        System.out.format("Resultado: %.3f\n", resultado);
     
     }
     
