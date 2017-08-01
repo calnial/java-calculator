@@ -13,12 +13,14 @@ El codigo fuente en `Java` se escribe en archivos cuya extensión es .java a par
     - [Metodos](#methods)
   - [Metodo main](#main)
 - [Nociones basicas de programación](#basics)
-  - [variables](#variables)
-    - [Entero](#entero)
-    - [Punto Flotante](#punto-flotante)
-    - [Caracter](#caracter)
-    - [Booleano](#booleano)
-
+  - [Estructuras de datos](#estructuras-de-datos)
+    - [variables y tipos de datos](#variables)
+      - [Entero](#entero)
+      - [Punto Flotante](#punto-flotante)
+      - [Caracter](#caracter)
+      - [Booleano](#booleano)
+      - [String](#string)
+    - [Arreglos](#array)
 
 ## Estructura basica de un programa en Java
 
@@ -95,7 +97,10 @@ la declaración del metodo es tal cual como se muestra arriba, donde la palabra 
 
 ## Basics
 
-### variables
+### Estructuras de datos
+
+Existen diferentes [estructuras de datos](https://es.wikipedia.org/wiki/Estructura_de_datos) que veremos a lo largo de las semanas, pero por ahora vamos a comentar dos: [variables](#variables) y [arreglos](#array).
+#### variables
 
 Como vimos antes, las [variables](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html) en `Java` estan asociadas a las clases, como campos de estas. Y las mismas pueden ser de diferentes tipos, los hay de tipos personalizados como el caso de [`teclado`](#fields) que es del tipo [`Scanner`](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) pero los hay [variables](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html) de otros tipo, de hecho mas comunes, conocidos como tipo primitivos o propios del lenguaje. Existen cuatro categorias para agrupar los posibles tipos primitivos que una variable puede tomar. Estos son:
 
@@ -106,7 +111,7 @@ Como vimos antes, las [variables](https://docs.oracle.com/javase/tutorial/java/n
 
 Por  convención las variables se nombran siguiendo el estilo [camel case](https://msdn.microsoft.com/en-us/library/x2dbyw72(v=vs.71).aspx), esto es, que los nombre comienzan con letra minuscula y las letras sucesivas en minuscula de igual manera, en el caso de ser un nombre compuesto, por dos o mas palabras, la primera letra de la segunda y demas letras estara en mayuscula. Ej: diasDeLaSemana.
 
-#### Entero
+##### Entero
 
 Para los numeros [enteros](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html) (aquellos que no poseen parte decimal), existen cuatro tipos de datos primitivos. Estos son: `byte`, `short`, `int` y `long` la diferencia entre ellos radica basicamente en el rango maximo de valores que puede contener una variable de dicho tipo, como se ilustra en la tabla abajo:
 
@@ -123,7 +128,7 @@ long edadAproximadaDelPlanetaTierra = 4543000000000L;
 
 En el codigo anterior, se pueden apreciar algunos ejemplos de definición de variables. Com vemos, primero se indica el tipo de dato luego el nombre de la variable seguido del operador de asignación (simbolo de igualdad) y el valor que se asigna a la variable. Esto es una [sentencia (statement)](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/expressions.html) y como toda sentencia termina con punto y como `;`.
 
-#### Punto Flotante
+##### Punto Flotante
 
 Para los numeros reales (que poseen parte decimal) se usa la notación de [punto flotante](https://es.wikipedia.org/wiki/Coma_flotante) y para este tipo de numeros existen dos tipos de datos primitivos en el lenguaje: `float` y `double`.
 
@@ -136,17 +141,80 @@ double piPi = 9.869604401; // pi*pi
 
 Al igual que ocurre para los tipos de datos enteros, la mayor diferencia entre los tipos `float` y `double` es la presición del valor que pueden contener.
 
-#### Caracter
+##### Caracter
+
+El tipo de dato [`char`](https://docs.oracle.com/javase/tutorial/java/data/characters.html) es la representación en memoria de un [caracter unicode](https://en.wikipedia.org/wiki/List_of_Unicode_characters) el cual se coloca entre comillas simples (`'`), si esta presente en el teclado de la computadora, basta con teclear ese caracter pero si no es ese el caso se puede indicar con el [codigo unicode](https://en.wikipedia.org/wiki/List_of_Unicode_characters).
 
 ![Tipo de dato caracter y booleano](https://rhynl.io/java/basics/images/caracter_booleano-min.png)
 
 ```java
 char inicialDelNombre = 'R';
+char letraA = '\u0041';
 ```
 
-#### Booleano
+##### Booleano
+
+El tipo de dato boolean puede tener dos valores posibles, `true` que indica ***verdadero*** y el valor `false` que indica ***falso***. las variables de este tipo de dato primitivo son utiles para almacenar el resultado de una comparación logica como veremos mas adelante.
 
 ```java
 boolean es2017AnioBisiesto = false;
 boolean esMartes = true;
 ```
+
+##### String
+
+Existe un tipo que no es primitivo pero cuyo uso es sumamente comun, de hecho lo hemos estado utilizando sin siquiera pensar en ello. La [cadena de caracteres](https://docs.oracle.com/javase/tutorial/java/data/strings.html) ([`String`](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)) es una clase que nos resuelve la manipulación de caracteres individuales para formar textos, de allí el nombre, cadena de caracteres, ya que no son mas que una suceción de caractres uno seguido de otro.
+
+```java
+System.out.println("Hello World!!");
+```
+
+En el ejemplo podemos apreciar como el metodo `println` recibe como parametro la cadena de caracteres `"Hello World!!"`, es de destacar que las cadenas de caracteres a diferencia de un caracter, se encierra entre comillas dobles (`"`). Para declarar una variable de tipo `String` se hace como hemos visto hasta ahora para los tipos pimitivos, aun cuando debemos recordar que `String` no es un tipo primitivo.
+
+```java
+String nombre = "John Doe";
+```
+
+Realmente lo que se esta creando es un objeto de tipo `String` o le que es lo mismo la variable `nombre` es una instancia de `String` y por ello tiene algunos atributos y metodos asociados, uno de los atributos mas comunes de los `String` es el `length` (longitud) que representa la logindut de la cadena de caracteres.
+
+```java
+String nombre = "John Doe";
+int longitudDelNombre = nombre.length;
+System.out.print(longitudDelNombre); // imprime 8.
+```
+
+Entre sus metodos vamos a mencionar dos por ahora, estos son `split` y `charAt`. `split` lo que hace es cortar la cadena, de acuerdo a un caracter dado y devolvernos un [arreglo](#array) (el cual veremos pronto) que contiene cada una de las partes en las que fue dividida la cadena.
+
+```java
+String cadenaDeLetras = "a,b,c,d,e";
+String[] arregloDeLetras = cadenaDeLetras.split(","); // arregloDeLetras es igual a ["a","b","c","d","e"]
+```
+
+En el ejemplo que vemos arriba, tenemos una cadena contentiva de una serie de letras separadas por coma. y luego le estamos diciendo que deseamos separar esa cadena de caracteres usando como caracter de ruptura la coma `,`.
+
+En cuanto al metodo `charAt` es un metodo que nos permite acceder al caracter ubicado en una posición especifica de la cadena. Digamos que deseamos almacenar en memoria la primera letra del nombre de una persona, lo hariamos de la siguiente manera.
+
+```java
+String nombre = "John Doe";
+char incialDelNombre = nombre.charAt(0);
+System.out.print(inicialDelNombre); // imprime J.
+```
+
+#### Array
+
+Un arreglo tambien llamado vector, no es mas una serie de elementos del mismo tipo, con un orden especifico y que son accedidos a traves de un indice de base cero. Retomemos un ejemplo de esto, el arreglo (`array`) de `String` que creamos anteriormente a partir de la variable `cadenaDeLetras`.
+
+```java
+String[] arregloDeLetras = cadenaDeLetras.split(","); // arregloDeLetras es igual a ["a","b","c","d","e"]
+```
+
+Como vemos en este ejemplo la variable `arregloDeLetras` es un vector en este caso de variables de tipo `String`, veamos otros ejemplos.
+
+```java
+int[] arregloDeNumeros = {1,2,3,4,5};
+char[] arregloDeCaracteres = new char[5];
+arregloDeCaracteres[0] = 'A';
+int primerElemento = arregloDeNumeros[0];
+```
+
+De los ejemplos anteriores podemos desprender algunas ideas sobre los arreglos, en primer lugar que existen diferentes maneras de declararlos y asignanles valores. Lo primero que debemos hacer es indicar el tipo de dato que los elementos que contendra el arreglo, estos puede ser cualquiera de los tipos primitivos o incluso tipos compuestos como lo es el caso de `String`, luego del tipo usamos los corchetes (`[]`) de apertura y cierre, seguido del nombre que le demos a la variable. En cuanto a la asignación podemos hacerlo indicando directamente los elementos que contendra el arreglo como es el caso de `arregloDeNumeros` y en cuyo caso debe hacerse indicando entre llaves (`{}`) y separados por coma (`,`) los distintos valores que contendra el arreglo. O como en el caso de `arregloDeCaracteres` definimos solo la longitud que tendra el arreglo, en cuyo caso se usa la palabra reservada `new` la cual indica que vamos a crear una variable de un tipo personalizado, en caso del ejemplo arraglo de char, seguido del tipo de dato y los corchetes, el cual debe ser igual al tipo que indicamos en la declaración de la variable y dentro de los corchetes indicamos la longitud del arreglo, es decir la cantidad de elementos maxima que puede albergar el vector.
